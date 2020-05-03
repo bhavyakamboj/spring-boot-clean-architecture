@@ -1,6 +1,7 @@
 plugins {
 	id 'org.springframework.boot' version '2.3.0.RC1'
 	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'org.asciidoctor.jvm.convert' version '3.1.0'
 	id 'java'
 }
 
@@ -38,4 +39,21 @@ dependencies {
 
 test {
 	useJUnitPlatform()
+}
+
+asciidoctor {
+
+	baseDirFollowsSourceFile()
+
+	attributes \
+        'build-gradle': file('build.gradle'),
+		'sourcedir': project.sourceSets.main.java.srcDirs[0],
+		'endpoint-url': 'http://sivalabs.in',
+		'imagesdir': 'images',
+		'toc': 'left',
+		'icons': 'font',
+		'setanchors': '',
+		'idprefix': '',
+		'idseparator': '-',
+		'docinfo': 'shared'
 }
